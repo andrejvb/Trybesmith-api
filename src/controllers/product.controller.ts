@@ -7,4 +7,10 @@ const createProduct = async (req: Request, res: Response) => {
   return res.status(201).json(data);
 };
 
-export default { createProduct };
+const findAll = async (req: Request, res: Response) => {
+  const { data } = await productService.findAllProducts();
+  // console.log('LOG CONTROLLER ALLPRODUCTS =>', data);
+  return res.status(200).json(data);
+};
+
+export default { createProduct, findAll };
