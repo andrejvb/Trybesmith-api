@@ -1,5 +1,5 @@
-import { Order, OrderResponse } from '../types/Order';
-import OrderModel, { OrderInputtableTypes } from '../database/models/order.model';
+import { Order } from '../types/Order';
+import OrderModel from '../database/models/order.model';
 import { ServiceResponse } from '../types/ServiceResponse';
 import ProductModel from '../database/models/product.model';
 
