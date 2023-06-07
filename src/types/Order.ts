@@ -3,3 +3,9 @@ export type Order = {
   userId: number;
   productIds?: { id: number }[]
 };
+
+export type OrderWithIdRep = {
+  id: number;
+  userId: number;
+  productIds?: number[];
+};
