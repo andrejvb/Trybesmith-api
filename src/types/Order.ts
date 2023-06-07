@@ -9,3 +9,8 @@ export type OrderWithIdRep = {
   userId: number;
   productIds?: number[];
 };
+
+export type OrderResponse = {
+  userId: number;
+  productIds: number[];
+};
