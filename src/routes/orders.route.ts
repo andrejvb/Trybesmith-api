@@ -13,7 +13,7 @@ router.post(
   tokenValidation, 
   userIdValidation, 
   productIdValidation, 
-  ordersController.findAllOrders,
+  ordersController.createOrder,
 );
 
 export default router;

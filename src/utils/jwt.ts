@@ -10,6 +10,7 @@ const generateToken = (payload: Payload): string => {
 
 const tokenValidation = (token: string): TokenResponse => {
   try {
+    if (!secret) throw new Error('Secret not found');
     const payload = jwt.verify(token, secret) as Payload;
     return { authentic: true, payload };
   } catch {
