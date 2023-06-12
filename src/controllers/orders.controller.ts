@@ -7,4 +7,10 @@ const findAllOrders = async (req: Request, res: Response) => {
   return res.status(200).json(data);
 };
 
-export default { findAllOrders };
+const createOrder = async (req: Request, res: Response) => {
+  const { userId, productIds } = req.body;
+  const { data } = await ordersService.createOrder({ userId, productIds });
+  return res.status(201).json(data);
+};
+
+export default { findAllOrders, createOrder };

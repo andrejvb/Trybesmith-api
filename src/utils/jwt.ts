@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Payload } from 'src/types/Payload';
+import { Payload, TokenResponse } from '../types/Payload';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
@@ -8,6 +8,12 @@ const generateToken = (payload: Payload): string => {
   return token;
 };
 
-// const validateToken = (token: string): string => jwt.verify(token, secret) as Payload;
-
-export default { generateToken };
+const tokenValidation = (token: string): TokenResponse => {
+  try {
+    const payload = jwt.verify(token, secret) as Payload;
+    return { authentic: true, payload };
+  } catch {
+    return { authentic: false };
+  }
+};
+export default { generateToken, tokenValidation };

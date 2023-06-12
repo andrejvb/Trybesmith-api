@@ -1,4 +1,5 @@
-import { Order } from '../types/Order';
+import { Op } from 'sequelize';
+import { Order, OrderResponse } from '../types/Order';
 import OrderModel from '../database/models/order.model';
 import { ServiceResponse } from '../types/ServiceResponse';
 import ProductModel from '../database/models/product.model';
@@ -38,4 +39,15 @@ const findAllOrders = async () :Promise<ServiceResponse<Order[]>> => {
 // }
 // };
 
-export default { findAllOrders };
+const createOrder = async ({ userId, productIds }: OrderResponse)
+: Promise<ServiceResponse<OrderResponse>> => {
+  const { dataValues } = await OrderModel.create({ userId });
+  await ProductModel.update(
+    { orderId: dataValues.id },
+    { where: { id: { [Op.in]: productIds } } },
+  );
+
+  return { status: 'SUCCESSFUL', data: { userId, productIds } };
+};
+
+export default { findAllOrders, createOrder };
